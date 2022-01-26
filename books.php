@@ -449,6 +449,7 @@ class BookController
 $controller=new BookController();
 $operation=(isset($argv[1])) ? $argv[1]:null;
 $book=(isset($argv[2])) ? $argv[2]:null;
+echo "$book\n";
 $page=(isset($argv[3])) ? $argv[3]:null;
 switch($operation){
     case "add":
