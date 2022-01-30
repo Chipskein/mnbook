@@ -80,9 +80,16 @@ class BookController:
                 ["getall", "NONE","Get all books"],
                 ["addall", "NONE", "add all books"],
                 ["help", "NONE", "print help"],
+                ["backup", "NONE", "dump sql script to backup.sql"],
             ]
         )
-        print(tbl)        
+        print(tbl)
+    def backup(self):
+        con=self.connection
+        f=open('backup.sql','w')
+        for line in con.iterdump():
+            f.write('%s\n' % line)
+        f.close()
 argv=sys.argv[1:]
 """Operation"""
 ope=argv[0] if len(argv)>0 else None 
@@ -112,8 +119,8 @@ if(ope is not None):
             Controller.addAllFromDir()
         if(ope=="help"):
             Controller.Help()
+        if(ope=="backup"):
+            Controller.backup()
 else:
     """Print Help"""
     Controller.Help()
-
-
